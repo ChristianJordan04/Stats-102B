@@ -24,11 +24,17 @@ get_angle(c(1,0), c(cos(270 * (pi/180)),sin(270 * (pi/180))))
 
 ## Given that $A^{-1}$ and $B^{-1}$ exist:
 
-## (a) Show that $(A^T)^{-1}=(A^{-1})^T$ 
+## (a) Show that $(A^T)^{-1}=(A^{-1})^T$
 
-$AA^{-1}=I$
+$$AA^{-1}=I$$
+$$(AA^{-1})^T=I^T$$
+$$A^T(A^{-1})^T=I$$
+$$(A^T)^{-1}A^T(A^{-1})^T=(A^T)^{-1}I$$
+$$(A^{-1})^T=(A^T)^{-1}$$
 
 ## (b) Show that $(AB)^{-1}=B^{-1}A^{-1}$
+
+
 
 # Eigenvalues
 
