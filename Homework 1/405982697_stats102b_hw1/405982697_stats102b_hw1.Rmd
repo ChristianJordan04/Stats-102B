@@ -7,34 +7,39 @@ output:
   html_document: default
 ---
 
-```{r message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE, echo = FALSE}
 library(pracma)
 ```
 
 # (1) Angle Between Two Vectors
 
-## (a)
+## (a) get_angle() Counterclockwise angle between two vectors
 ```{r}
 get_angle = function(x, y) {
   # Calculates the (counterclockwise) angle between two 2-dimensional vectors
-  # Args:
-  # x: A single 2-dimensional vector
-  # y: A single 2-dimensional vector
-  # Return:
-  # The counterclockwise angle between x and y
   
-  rads <- acos(dot(x,y) / (Norm(x) * Norm(y)))
-                      
-  rads * (180/pi)
+  # Calculate angle 
+  radians <- acos(dot(x,y) / (Norm(x) * Norm(y)))
+  degrees <- radians * (180/pi)
+  
+  # Make angle counterclockwise
+  cross_prod <- x[1]*y[2] - x[2]*y[1]
+
+  if(cross_prod > 0) {
+    degrees <- 360 - degrees
+  }
+  
+  degrees
 }
 ```
 
-## (b)
+## (b) Vector pairs giving 17, 110, and 270 degrees
 ```{r}
-get_angle(c(1,0), c(cos(17 * (pi/180)),sin(17 * (pi/180))))
-get_angle(c(1,0), c(cos(110 * (pi/180)),sin(110 * (pi/180))))
-get_angle(c(1,0), c(cos(270 * (pi/180)),sin(270 * (pi/180))))
+get_angle(c(cos(17 * (pi/180)),sin(17 * (pi/180))), c(1,0))
+get_angle(c(cos(110 * (pi/180)),sin(110 * (pi/180))), c(1,0))
+get_angle(c(cos(270 * (pi/180)),sin(270 * (pi/180))), c(1,0))
 ```
+\newpage
 
 # (2) Matrix Inverse Properties
 
@@ -52,10 +57,21 @@ $$(A^{-1})^T=(A^T)^{-1}$$
 
 
 
-# Eigenvalues
+$$I=AA^{-1}$$
+$$I=AIA^{-1}$$
+$$I=A(BB^{-1})A^{-1}$$
+$$I=(AB)(B^{-1}A^{-1})$$
+$$(AB)(AB)^{-1}=(AB)(B^{-1}A^{-1})$$
+$$(AB)^{-1}(AB)(AB)^{-1}=(AB)^{-1}(AB)(B^{-1}A^{-1})$$
 
-# Ellipses
+$$(AB)^{-1}=B^{-1}A^{-1}$$
 
-# Orthogonal Projection
+# (3) Eigenvalue Property
 
-# Modelling
+## $A$ is $kxk$ matrix and $P$ is $kxk$ orthogonal matrix. Show that $P^TAP and $A$ have the same eigenvalues$
+
+# (4) Ellipses
+
+# (5) Orthogonal Projection
+
+# (6) Modelling
