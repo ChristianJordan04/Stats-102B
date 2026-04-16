@@ -1,0 +1,121 @@
+---
+title: "Stats 102B Homework 2"
+author: "Christian Jordan"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+
+```
+
+# (1) Two-Dimensional Random Search
+
+## (a) random_search()
+```{r}
+random_search <- function(g, alpha_choice = 1, max_its = 100, num_samples = 1000, w0 = c(0,0)) {
+  
+}
+```
+
+## Suppose we have $g(w_1, w_2=100(w_2-w_1^2)^2+(w_1-w_2)^2$
+
+## (b) Draw the plots of cost_history to showcase your function with $w_0=[-3 -3]^T$.
+```{r}
+
+```
+
+## (c) Repeat (b) with a steplength diminishing rule.
+```{r}
+
+```
+
+## (d) Discuss your results of (b) and (c)
+```{r}
+
+```
+
+\newpage
+
+# (2) Zero-order Coordinate Search
+
+## (a) 
+```{r}
+
+```
+
+## (b) 
+```{r}
+
+```
+
+## (c) 
+```{r}
+
+```
+
+## (d) 
+```{r}
+
+```
+
+\newpage
+
+# (3) First-order Coordinate Descent
+
+## (a) 
+```{r}
+
+```
+
+## (b) 
+```{r}
+
+```
+
+## (c) 
+```{r}
+
+```
+
+\newpage
+
+# (4) Convex Function Properties
+
+## Prove that:
+
+## (1) The sum of convex functions is always convex
+```{r}
+
+```
+
+## (2) The maximum of convex functions is convex
+```{r}
+
+```
+
+\newpage
+
+# (5) Gradient Descent
+
+## (a) 
+```{r}
+
+```
+
+## (b) 
+```{r}
+
+```
+
+## (c) 
+```{r}
+
+```
+
+## (d) 
+```{r}
+
+```
