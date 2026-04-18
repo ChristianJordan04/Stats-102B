@@ -38,15 +38,21 @@ random_search <- function(g, alpha_choice = 1, max_its = 100, num_samples = 1000
       direction <- direction / sqrt(sum(direction^2))
       
       # Save random weight update and cost
-      weights <- cbind(weights, current_weights + alpha_choice * direction)
-      costs <- c(costs, g(weights[1, i], weights[2, i]))
+      if(alpha_choice != "diminishing") {
+        weights <- cbind(weights, current_weights + alpha_choice * direction)
+        costs <- c(costs, g(weights[1, i], weights[2, i]))
+      } else {
+        weights <- cbind(weights, current_weights + (1/its) * direction)
+        costs <- c(costs, g(weights[1, i], weights[2, i]))
+      }
     }
     
     # Save best weights and cost found
-    best_weight <- weights[,which(costs == min(costs))]
-    best_cost <- g(best_weight[1], best_weight[2])
+    best_index <- which.min(costs)
+    best_weight <- weights[, best_index]
+    best_cost <- costs[best_index]
     
-    weight_history <- cbind(weight_history, best_weight)
+    weight_history <- cbind(weight_history, unname(best_weight))
     cost_history <- c(cost_history, best_cost)
     
     its <- its + 1
@@ -66,18 +72,27 @@ g <- function(w1, w2) {
 
 ## (b) Draw the plots of cost_history to showcase your function with $w_0=[-3 -3]^T$.
 ```{r}
-random_search(g, w0 = c(-3, -3), alpha_choice = 5)
+cost_hist <- random_search(g, w0 = c(-3, -3))[[2]]
+plot(cost_hist)
+tail(x, n = 1)
 ```
 
 ## (c) Repeat (b) with a steplength diminishing rule.
 ```{r}
-
+cost_hist_d <- random_search(g, w0 = c(-3, -3), alpha_choice = "diminishing")[[2]]
+plot(cost_hist_d)
 ```
 
 ## (d) Discuss your results of (b) and (c)
-```{r}
 
+From the plots, we can see that the fixed step length method used in part (b) converges to the estimated optimum sooner (less than 10 iterations) compared to the diminishing-step method used in part (c) which doesn't converge to a final value until after around 60 iterations. However, we can from the code below that the fixed step length method settled at weights resulting in a cost function value of 0.016 while the diminishing step length method settled at weights resulting in a value of 1.01*10^-16. So while the diminishing method took longer to converge, it converged to a better minima for the function. This is because it is less likely to overshoot the actual minima of the function as it gets closer and closer to it more slowly.
+
+```{r}
+cost_hist[length(cost_hist)]
+cost_hist_d[length(cost_hist_d)]
 ```
+
+
 
 \newpage
 
