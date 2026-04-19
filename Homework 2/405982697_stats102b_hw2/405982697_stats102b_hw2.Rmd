@@ -92,15 +92,35 @@ cost_hist[length(cost_hist)]
 cost_hist_d[length(cost_hist_d)]
 ```
 
-
-
 \newpage
 
 # (2) Zero-order Coordinate Search
 
 ## (a) 
 ```{r}
+# Pseudocode:
+# Function {
+# Initialize weight and cost histories
+# 
+# For iterations 1 to max_its or until tol reached {
+#   If odd iteration -> optimize w1
+#       Calculate step in + and - w1 directions
+#       Save the direction that produces best descent (or neither if no descent)
+#       Update cost weight and cost history
+#   else, optimize w2
+#       Calculate step in + and - w2 directions
+#       Save the direction that produces best descent (or neither if no descent)
+#       Update cost weight and cost history
+# }
+# 
+# Return final weight and cost
+# }
 
+coordinate_descent_0 <- function(g, alpha_choice = 1, max_its = 100, w0 = c(0,0), tol = 10^-5) {
+  
+  
+  
+}
 ```
 
 ## (b) 
