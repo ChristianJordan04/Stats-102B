@@ -74,13 +74,14 @@ g <- function(w1, w2) {
 ```{r}
 cost_hist <- random_search(g, w0 = c(-3, -3))[[2]]
 plot(cost_hist)
-tail(x, n = 1)
+c(Minima = tail(cost_hist, n = 1))
 ```
 
 ## (c) Repeat (b) with a steplength diminishing rule.
 ```{r}
 cost_hist_d <- random_search(g, w0 = c(-3, -3), alpha_choice = "diminishing")[[2]]
 plot(cost_hist_d)
+c(Minima = tail(cost_hist, n = 1))
 ```
 
 ## (d) Discuss your results of (b) and (c)
@@ -115,7 +116,9 @@ cost_hist_d[length(cost_hist_d)]
 # 
 # Return final weight and cost
 # }
+```
 
+```{r}
 coordinate_descent_0 <- function(g, alpha_choice = 1, max_its = 100, w0 = c(0,0), tol = 10^-5) {
   
   # Initialize weight history
@@ -139,7 +142,7 @@ coordinate_descent_0 <- function(g, alpha_choice = 1, max_its = 100, w0 = c(0,0)
     }
     
       if(alpha_choice == "diminishing") {
-        d <- 1/sqrt(its)
+        d <- 1/its
       } else {
         d <- alpha_choice
       }
